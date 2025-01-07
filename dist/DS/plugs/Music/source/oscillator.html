@@ -1,0 +1,141 @@
+
+<!DOCTYPE html> 
+<html>
+
+  <head>
+	<title>Oscillator</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+<style type="text/css">
+  .samp-inline {
+    padding-bottom: 2px;
+  }
+</style>
+  </head> 
+
+  <body> 
+
+    <div data-role="page" data-theme="a">
+
+      <div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="history.back(); return false">Back</a>
+		<h1>Oscillator</h1>
+		<a class="ui-btn-right" data-icon="gear" data-iconpos="notext" onclick="tglTheme()"></a>
+      </div><!-- /header -->
+
+      <div data-role="content">
+
+		<p>Oscillator supports a number of features including phase rotation, multiple oscillator types.</p>
+
+		<p>You can an instance of the music object when you need it like this:</p>
+
+		<div class="samp">&nbsp;synth = music.CreateOscillator(<a href="#frequency" data-transition="pop" data-rel="popup">note</a>, <a href="#oscillators" data-transition="pop" data-rel="popup">type</a>, <a href="#boolean" data-transition="pop" data-rel="popup">noDestination</a>)</div>
+        <br>
+        
+        <br>
+        <div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+          <h3>Example</h3>
+          <div id="examp1" style="font-size:70%">
+            <br>
+            <span class="token keyword">function</span> OnStart()<br>
+            {<br>
+            <b id="snip1"  style="font-size:100%">
+              &nbsp;&nbsp;music = app._386()<br>
+              &nbsp;&nbsp;osc = music.CreateOscillator(440, <span class="token string">"sine"</span>)<br>
+              <br>
+              &nbsp;&nbsp;osc.Play()<br>
+            </b>
+            }<br>
+            <br>
+          </div>
+          <div name="divCopy" align="right">
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+          </div>
+		</div>
+		<br>
+        
+        <br>
+
+        <b>Methods:</b>
+        <br><br>
+
+        <div class="samp">&nbsp;osc.Play(<a href="#time" data-transition="pop" data-rel="popup">time</a>, <a href="#time" data-transition="pop" data-rel="popup">offset</a>, <a href="#time" data-transition="pop" data-rel="popup">duration</a>)</div>
+        <p>Start the source at the specified time. If no time is given, start the source now.</p>
+
+        <br>
+
+        <div class="samp">&nbsp;osc.Stop(<a href="#time" data-transition="pop" data-rel="popup">time</a>)</div>
+        <p>Stop the source at the specified time. If no time is given, stop the source now.</p>
+        
+        <br>
+        
+        <div class="samp">&nbsp;osc.Restart(<a href="#frequency" data-transition="pop" data-rel="popup">note</a>, <a href="#oscillators" data-transition="pop" data-rel="popup">type</a>)</div>
+        <p>Restart the source.</p>
+        
+        <br>
+        
+        <div class="samp">&nbsp;osc.SetVolume(<a href="#decibels" data-transition="pop" data-rel="popup">decibels</a>)</div>
+        <p>The volume of the output in decibels.</p>
+        
+        <br>
+        
+        <div class="samp">&nbsp;osc.SetFrequency(<a href="#frequency" data-transition="pop" data-rel="popup">value</a>)</div>
+        <p>The volume of the output in decibels.</p>
+        
+        <br>
+        
+        <div class="samp">&nbsp;osc.SetFrequencyRampTo(<a href="#frequency" data-transition="pop" data-rel="popup">value</a>, <a href="#time" data-transition="pop" data-rel="popup">rampTime</a>, <a href="#time" data-transition="pop" data-rel="popup">startTime</a>)</div>
+        <p>Ramps to the given value over the duration of the rampTime. Automatically selects the best ramp type (exponential or linear) depending on the units of the signal.</p>
+        
+        <br>
+        
+        <div class="samp">&nbsp;osc.Connect(<a href="#input" data-transition="pop" data-rel="popup">...nodes</a>)</div>
+        <p>Connect the output of this node to the rest of the nodes in series.</p>
+        
+        <br>
+        
+        <div class="samp">&nbsp;osc.GetName()</div>
+        <p>Return oscillator name.</p>
+        
+        <br>
+        
+        <div class="samp">&nbsp;osc.Dispose()</div>
+        <p>Clean up.</p>
+        
+        <br>
+        
+        <div class="samp">&nbsp;osc._oscillator</div>
+        <p>Return Tone.Oscillator class from Tonejs</p>
+        
+        <br>
+
+      </div><!-- /content -->
+      
+      <!-- Popups -->
+      <div data-role="popup" id="synthtypes" class="ui-content"><b>Synth</b>, <b>AM</b>, <b>FM</b>, <b>Membrane</b>, <b>Metal</b>, <b>Duo</b>, <b>Pluck</b>, <b>Mono</b>, <b>Noise</b></div>
+      <div data-role="popup" id="jsonobject" class="ui-content">{volume: DECIBELS,<br> portamento: SECONDS}</div>
+
+      <div data-role="popup" id="frequency" class="ui-content">Frequency can be described similar to time, except ultimately the values are converted to frequency instead of seconds. A number is taken literally as the value in hertz. Additionally any of the Time encodings can be used. Note names in the form of NOTE OCTAVE (i.e. C4) are also accepted and converted to their frequency value.</div>
+      <div data-role="popup" id="time" class="ui-content">Time can be described in a number of ways. Read more <a href="https://github.com/Tonejs/Tone.js/wiki/Time">Time.</a><br>
+        <ul>
+          <li>Numbers, which will be taken literally as the time (in seconds).</li>
+          <li>Notation, (&quot;4n&quot;, &quot;8t&quot;) describes time in BPM and time signature relative values.</li>
+          <li>TransportTime, (&quot;4:3:2&quot;) will also provide tempo and time signature relative times in the form BARS:QUARTERS:SIXTEENTHS.</li>
+          <li>Frequency, (&quot;8hz&quot;) is converted to the length of the cycle in seconds.</li>
+          <li>Now-Relative, (&quot;+1&quot;) prefix any of the above with &quot;+&quot; and it will be interpreted as &quot;the current time plus whatever expression follows&quot;.</li>
+          <li>Object, ({&quot;4n&quot; : 3, &quot;8t&quot; : -1}). The resulting time is equal to the sum of all of the keys multiplied by the values in the object.</li>
+          <li>No Argument, for methods which accept time, no argument will be interpreted as &quot;now&quot; (i.e. the currentTime).</li>
+        </ul></div>
+      <div data-role="popup" id="boolean" class="ui-content"><b>true</b> or <b>false</b></div>
+      <div data-role="popup" id="input" class="ui-content">music.Gain, music.Phaser or other Tonejs effects.</div>
+      <div data-role="popup" id="range01" class="ui-content">Range: <b>0</b>..<b>1</b></div>
+      <div data-role="popup" id="range02" class="ui-content">Range: <b>0</b>..<b>2</b></div>
+      <div data-role="popup" id="range05" class="ui-content">Range: <b>0</b>..<b>5</b></div>
+      <div data-role="popup" id="oscillators" class="ui-content"><b>Sine</b>, <b>Square</b>, <b>Triangle</b>, <b>Sawtooth</b></div>
+      <div data-role="popup" id="decibels" class="ui-content">Decibels are a logarithmic unit of measurement which is useful for volume because of the logarithmic way that we perceive loudness. 0 decibels means no change in volume. -10db is approximately half as loud and 10db is twice is loud.</div>
+
+    </div><!-- /page -->
+
+  </body>
+</html>
