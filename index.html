@@ -7,10 +7,12 @@
     <title>Vite + React</title>
     <script src="file:///android_asset/app.js">
       window.app=app;
-      console.log(app.GetAppName());
+      function OnStart() {
+        console.log(window.appGetAppName());
+      }
     </script>
   </head>
-  <body>
+  <body onload="window.app.Start()">
     <div id="root">root</div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
