@@ -1,15 +1,14 @@
 {
-  "name": "DS_Runner",
+  "name": "app",
   "version": "1.0.0",
-  "description": "",
-  "main": "runner.js",
+  "description": "DroidScript app example based on Web Components",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --config webpack.config.js --mode development"
   },
   "keywords": [],
-  "author": "",
+  "author": "mkrok",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.26.0",
