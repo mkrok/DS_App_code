@@ -7,6 +7,7 @@ export default {
   html(p) {
     return `
       <div>
+        <p>${p.time}</p>
         <mk-button></mk-button>
       </div>
     `;
