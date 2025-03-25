@@ -1,7 +1,7 @@
 import Data from '../data/data';
+const AdvancedMarkerElement = await google.maps.importLibrary('marker');
 
 var zum = 15;
-var map;
 var initialPos = { lat: 50.061667, lng: 19.937222 };
 var myTrackCoordinates;
 var myTrack;
@@ -51,22 +51,19 @@ const initMap = async () => {
     myTrackCoordinates = myTrack.getPath();
     myTrack.setMap(map);
 
-    var startLatLng = new google.maps.LatLng(50.061667, 19.937222);
+    const startLatLng = new google.maps.LatLng(50.061667, 19.937222);
 
     marker = new google.maps.Marker({
       position: startLatLng,
-      //icon: ikona,
-      map: map,
     });
-    //marker.setMap(map);
+
+    marker.setMap(map);
 
     //Associate the styled map with the MapTypeId and set it to display.
     map.mapTypes.set('map_style', styledMap);
     map.setMapTypeId('map_style');
     map.setCenter(initialPos);
   } // if (google)
-
-  return map;
 }; // function initMap
 
 export default initMap;

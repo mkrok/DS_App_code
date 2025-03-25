@@ -7,7 +7,6 @@ import MkMap from './components/map/map';
 import locOnChange from './functions/locOnChange';
 import initMap from './functions/initMap';
 
-var map;
 window.onerror = function (msg, url, lineNo, columnNo, error) {
   var string = msg.toLowerCase();
   var substring = 'script error';
@@ -27,6 +26,8 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
 };
 
 window.onload = function () {
+  console.log(myTrackCoordinates);
+  initMap();
   try {
     window.loc = app.CreateLocator('GPS');
     window.myPosition = { lat: null, lng: null };
@@ -37,5 +38,4 @@ window.onload = function () {
   } catch {
     console.error('Error creating the app locator');
   }
-  map = initMap();
 };
