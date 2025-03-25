@@ -1,14 +1,12 @@
 import Template from './template.js';
 
 class MkApp extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
+  connectedCallback() {
     const params = {
       bgColor: '#555',
       color: 'white',
     };
-    this.shadowRoot.innerHTML = Template.render(params);
+    this.innerHTML = Template.render(params);
   }
 }
 

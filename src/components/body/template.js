@@ -8,6 +8,7 @@ export default {
     return `
       <div>
         <p>${p.time}</p>
+        <textarea rows="10" cols="30" wrap="hard">${JSON.stringify(p.myPosition)}</textarea>
         <mk-button></mk-button>
       </div>
     `;
@@ -18,7 +19,7 @@ export default {
       <style>
 
         div {
-          height: calc(100vh - 2em);
+          height: 100%;
           border-bottom: solid 1px #aaa;
           display: flex;
           flex-direction: column;

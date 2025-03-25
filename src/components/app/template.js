@@ -8,6 +8,7 @@ export default {
     return `
       <div>
         <mk-header></mk-header>
+        <div id="map"></div>
         <mk-body></mk-body>
       </div>
     `;

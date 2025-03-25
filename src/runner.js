@@ -3,8 +3,11 @@ import MkButton from './components/button/button';
 import MkApp from './components/app/app';
 import MkHeader from './components/header/header';
 import MkBody from './components/body/body';
+import MkMap from './components/map/map';
 import locOnChange from './functions/locOnChange';
+import initMap from './functions/initMap';
 
+var map;
 window.onerror = function (msg, url, lineNo, columnNo, error) {
   var string = msg.toLowerCase();
   var substring = 'script error';
@@ -34,4 +37,5 @@ window.onload = function () {
   } catch {
     console.error('Error creating the app locator');
   }
+  map = initMap();
 };

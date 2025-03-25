@@ -1,4 +1,5 @@
 import EventBus from './eventbus.js';
+import Data from './data.js';
 
 export default {
   get POSITION_UPDATE_EVENT() {
@@ -6,6 +7,8 @@ export default {
   },
 
   updatePosition(position) {
+    console.log(JSON.stringify(position));
+    Data.myPosition = position;
     let ce = new CustomEvent(this.POSITION_UPDATE_EVENT, {
       detail: {
         myPosition: position,
