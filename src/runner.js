@@ -1,4 +1,3 @@
-// import '@fontsource/inter';
 import MkButton from './components/button/button';
 import MkApp from './components/app/app';
 import MkHeader from './components/header/header';
@@ -6,6 +5,11 @@ import MkBody from './components/body/body';
 import MkMap from './components/map/map';
 import locOnChange from './functions/locOnChange';
 import initMap from './functions/initMap';
+import './style.css';
+import config from '/config.json';
+import googleMapsLoader from './functions/googleMapsLoader';
+
+googleMapsLoader(config.googleMapsToken);
 
 window.onerror = function (msg, url, lineNo, columnNo, error) {
   var string = msg.toLowerCase();
@@ -26,7 +30,6 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
 };
 
 window.onload = function () {
-  console.log(myTrackCoordinates);
   initMap();
   try {
     window.loc = app.CreateLocator('GPS');

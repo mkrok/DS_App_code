@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
   entry: './src/runner.js',
   output: {
@@ -41,6 +43,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/DS_Runner.html',
       filename: 'DS_Runner.html',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: './config.json' }],
     }),
   ],
   devServer: {

@@ -1,5 +1,5 @@
 export default {
-  _myPosition: { lat: 0, lng: 0 },
+  _myPosition: { lat: 50.061667, lng: 19.937222 },
 
   get myPosition() {
     return this._myPosition;

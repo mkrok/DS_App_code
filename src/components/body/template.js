@@ -19,7 +19,7 @@ export default {
       <style>
 
         div {
-          height: 100%;
+          height: 50vh;
           border-bottom: solid 1px #aaa;
           display: flex;
           flex-direction: column;

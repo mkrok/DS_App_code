@@ -1,17 +1,12 @@
 import Data from '../data/data';
-const AdvancedMarkerElement = await google.maps.importLibrary('marker');
 
-var zum = 15;
-var initialPos = { lat: 50.061667, lng: 19.937222 };
-var myTrackCoordinates;
-var myTrack;
-var marker;
-const myPosition = Data.myPosition;
+const zoom = 15;
+const initialPosition = Data.myPosition;
 
 const initMap = async () => {
   if (typeof google !== 'undefined') {
-    const { Map } = await google.maps.importLibrary('maps');
-    console.log('google maps loaded successfully');
+    const { Map, StyledMapType } = await google.maps.importLibrary('maps');
+    const { AdvancedMarkerElement } = await google.maps.importLibrary('marker');
     // Create an array of styles.
     var styles = [
         {
@@ -30,39 +25,39 @@ const initMap = async () => {
       ],
       // Create a new StyledMapType object, passing it the array of styles,
       // as well as the name to be displayed on the map type control.
-      styledMap = new google.maps.StyledMapType(styles, { name: 'Styled Map' });
+      styledMap = new StyledMapType(styles, { name: 'Styled Map' });
 
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: myPosition,
-      zoom: zum,
+    window.map = new Map(document.getElementById('map'), {
+      center: initialPosition,
+      zoom: zoom,
+      mapId: 'RUNNER_MAP',
       streetViewControl: false,
       zoomControl: false,
       mapTypeControl: false,
       mapTypeControlOptions: {
-        mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style'],
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'RUNNER_MAP'],
       },
     });
 
-    myTrack = new google.maps.Polyline({
+    window.myTrack = new google.maps.Polyline({
       strokeColor: 'red',
       strokeOpacity: 1.0,
       strokeWeight: 6,
     });
-    myTrackCoordinates = myTrack.getPath();
+    window.myTrackCoordinates = myTrack.getPath();
     myTrack.setMap(map);
 
     const startLatLng = new google.maps.LatLng(50.061667, 19.937222);
 
-    marker = new google.maps.Marker({
+    window.marker = new AdvancedMarkerElement({
+      map: window.map,
       position: startLatLng,
     });
 
-    marker.setMap(map);
-
     //Associate the styled map with the MapTypeId and set it to display.
-    map.mapTypes.set('map_style', styledMap);
-    map.setMapTypeId('map_style');
-    map.setCenter(initialPos);
+    map.mapTypes.set('RUNNER_MAP', styledMap);
+    map.setMapTypeId('RUNNER_MAP');
+    map.setCenter(initialPosition);
   } // if (google)
 }; // function initMap
 
