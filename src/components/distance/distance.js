@@ -3,16 +3,17 @@ import EventBus from '../../state/eventbus.js';
 import state from '../../state/state.js';
 import GPS from '../../state/gps.js';
 
-class MkBody extends HTMLElement {
+class MkDistance extends HTMLElement {
   constructor() {
     super();
+
     this.attachShadow({ mode: 'open' });
     const params = {
-      myPosition: state.myPosition,
-      startTime: state.startTime,
+      distance: state.myDistance,
     };
-    EventBus.addEventListener(GPS.POSITION_UPDATE_EVENT, e => {
-      params.myPosition = e.detail.myPosition;
+
+    EventBus.addEventListener(GPS.DISTANCE_UPDATE_EVENT, e => {
+      params.distance = e.detail.myDistance;
       this.shadowRoot.innerHTML = Template.render(params);
     });
 
@@ -20,8 +21,8 @@ class MkBody extends HTMLElement {
   }
 }
 
-if (!customElements.get('mk-body')) {
-  customElements.define('mk-body', MkBody);
+if (!customElements.get('mk-distance')) {
+  customElements.define('mk-distance', MkDistance);
 }
 
-export default MkBody;
+export default MkDistance;

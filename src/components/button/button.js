@@ -1,11 +1,9 @@
 import Template from './template.js';
-
 class MkButton extends HTMLElement {
   constructor() {
     super();
 
     let params = {
-      title: 'Click me!',
       color: 'red',
     };
 

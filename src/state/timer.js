@@ -1,4 +1,5 @@
 import EventBus from './eventbus.js';
+import state from './state.js';
 
 export default {
   get TIME_UPDATE_EVENT() {
@@ -32,6 +33,7 @@ export default {
   },
 
   updateTime(seconds) {
+    state.counter = seconds;
     let ce = new CustomEvent(this.TIME_UPDATE_EVENT, {
       detail: {
         time: seconds,

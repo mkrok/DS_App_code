@@ -45,7 +45,7 @@ module.exports = {
       filename: 'DS_Runner.html',
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: './config.json' }],
+      patterns: [{ from: './src/config.json' }],
     }),
   ],
   devServer: {

@@ -1,4 +1,4 @@
-import Data from '../data/data';
+import Data from '../state/state';
 
 const zoom = 15;
 const initialPosition = Data.myPosition;
@@ -6,7 +6,7 @@ const initialPosition = Data.myPosition;
 const initMap = async () => {
   if (typeof google !== 'undefined') {
     const { Map, StyledMapType } = await google.maps.importLibrary('maps');
-    const { AdvancedMarkerElement } = await google.maps.importLibrary('marker');
+    // const { AdvancedMarkerElement } = await google.maps.importLibrary('marker');
     // Create an array of styles.
     var styles = [
         {
@@ -30,7 +30,7 @@ const initMap = async () => {
     window.map = new Map(document.getElementById('map'), {
       center: initialPosition,
       zoom: zoom,
-      mapId: 'RUNNER_MAP',
+      // mapId: 'RUNNER_MAP',
       streetViewControl: false,
       zoomControl: false,
       mapTypeControl: false,
@@ -49,7 +49,7 @@ const initMap = async () => {
 
     const startLatLng = new google.maps.LatLng(50.061667, 19.937222);
 
-    window.marker = new AdvancedMarkerElement({
+    window.marker = new google.maps.Marker({
       map: window.map,
       position: startLatLng,
     });

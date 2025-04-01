@@ -1,3 +1,5 @@
+import msToTimeString from '../../functions/msToTimeString';
+
 export default {
   render(props) {
     return `${this.html(props)}
@@ -5,10 +7,17 @@ export default {
   },
 
   html(p) {
+    const currentTime = new Date(p.myPosition.time).toLocaleTimeString();
+    const startedTime = new Date(p.startTime).toLocaleTimeString();
+    const time = msToTimeString(p.myPosition.time - p.startTime);
     return `
       <div>
-        <p>${p.time}</p>
-        <textarea rows="10" cols="30" wrap="hard">${JSON.stringify(p.myPosition)}</textarea>
+        <mk-counter></mk-counter>
+        <mk-distance></mk-distance>
+        <mk-timer></mk-timer>
+        <textarea rows="10" cols="40" wrap="hard">${JSON.stringify(p.myPosition)} - ${startedTime} - ${currentTime} ${
+      time.hours
+    }:${time.minutes}:${time.seconds} </textarea>
         <mk-button></mk-button>
       </div>
     `;
@@ -20,7 +29,6 @@ export default {
 
         div {
           height: 50vh;
-          border-bottom: solid 1px #aaa;
           display: flex;
           flex-direction: column;
           align-items: center;

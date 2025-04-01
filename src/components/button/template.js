@@ -1,3 +1,5 @@
+import play from '../../icons/play';
+
 export default {
   render(props) {
     return `${this.html(props)}
@@ -5,21 +7,26 @@ export default {
   },
 
   html(p) {
-    return `<button>${p.title}</button>`;
+    return `
+        <button>${play(p.color)}</button>
+      `;
   },
 
   css(p) {
     return `<style>
+      
       button {
-        background-color: ${p.color || '#444'};
-        color: white;
-        padding: 0.5rem;
-        font-size: ${p.size === 'large' ? '2em' : '1em'};
-        font-weight: normal;
-        margin: 10px;
-        border-radius: 0.25rem;
-        border: 1px solid ${p.color || '#444'};
+        background-color: #555;
+        margin: 2rem;
+        border: #555;
+        height: 50px;
       }
+
+      svg { 
+        height: 50px;
+        width: 50px;
+      }
+
     </style>`;
   },
 };
