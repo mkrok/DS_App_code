@@ -35,14 +35,14 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
 };
 
 window.onload = function () {
+  _AddPermissions('Location, Storage, SMS');
   initMap();
   Timer.play();
-  app.GetPermission('android.permission.ACCESS_BACKGROUND_LOCATION');
-  console.log(app.CheckPermission('android.permission.ACCESS_BACKGROUND_LOCATION'));
   window.loc = app.CreateLocator('GPS');
   window.myPosition = { lat: null, lng: null };
   app.SetOrientation('Portrait');
   loc.SetOnChange(locOnChange);
   loc.SetRate(1); // update frequency in seconds
   loc.Start();
+  app.TextToSpeech('application started');
 };
